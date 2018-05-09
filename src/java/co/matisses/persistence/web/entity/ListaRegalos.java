@@ -34,19 +34,19 @@ public class ListaRegalos implements Serializable {
     @Basic(optional = false)
     @Column(name = "idLista")
     private Long idLista;
-    @Basic(optional = false)
+    @Basic(optional = true)
     @Column(name = "codigo")
     private String codigo;
-    @Basic(optional = false)
+    @Basic(optional = true)
     @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
     @Column(name = "cedulaCreador")
     private String cedulaCreador;
-    @Basic(optional = false)
+    @Basic(optional = true)
     @Column(name = "nombreCreador")
     private String nombreCreador;
-    @Basic(optional = false)
+    @Basic(optional = true)
     @Column(name = "apellidoCreador")
     private String apellidoCreador;
     @Basic(optional = true)
@@ -96,24 +96,28 @@ public class ListaRegalos implements Serializable {
     @Basic(optional = false)
     @Column(name = "aceptaBonos")
     private Boolean aceptaBonos;
-    @Basic(optional = false)
+    @Basic(optional = true)
     @Column(name = "notificacionInmediataCreador")
     private String notificacionInmediataCreador;
-    @Basic(optional = false)
+    @Basic(optional = true)
     @Column(name = "notificacionDiariaCreador")
     private String notificacionDiariaCreador;
-    @Basic(optional = false)
+    @Basic(optional = true)
     @Column(name = "notificacionSemanalCreador")
     private String notificacionSemanalCreador;
     @Basic(optional = false)
     @Column(name = "notificacionCambioCategoriaCreador")
     private String notificacionCambioCategoriaCreador;
+    @Basic(optional = true)
     @Column(name = "notificacionInmediataCocreador")
     private String notificacionInmediataCocreador;
+    @Basic(optional = true)
     @Column(name = "notificacionDiariaCocreador")
     private String notificacionDiariaCocreador;
+    @Basic(optional = true)
     @Column(name = "notificacionSemanalCocreador")
     private String notificacionSemanalCocreador;
+    @Basic(optional = true)
     @Column(name = "notificacionCambioCategoriaCocreador")
     private String notificacionCambioCategoriaCocreador;
     @Column(name = "permitirEntregaPersonal")
@@ -121,8 +125,96 @@ public class ListaRegalos implements Serializable {
     @JoinColumn(name = "idCategoria", referencedColumnName = "idCategoria")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private CategoriaListaRegalos categoria;
+    @Basic(optional = false)
     @Column(name = "activa")
     private Boolean activa;
+    @Basic(optional = true)
+    @Column(name = "correoCocreador")
+    private String correoCocreador;
+    @Basic(optional = true)
+    @Column(name = "correoCreador")
+    private String correoCreador;
+    @Basic(optional = true)
+    @Column(name = "notificacionInmediataMailCreador")
+    private Boolean notificacionInmediataMailCreador;
+    @Basic(optional = true)
+    @Column(name = "notificacionInmediataSmsCreador")
+    private Boolean notificacionInmediataSmsCreador;
+    @Basic(optional = true)
+    @Column(name = "notificacionDiariaMailCreador")
+    private Boolean notificacionDiariaMailCreador;
+    @Basic(optional = true)
+    @Column(name = "notificacionDiariaSmsCreador")
+    private Boolean notificacionDiariaSmsCreador;
+    @Basic(optional = true)
+    @Column(name = "notificacionSemanalMailCreador")
+    private Boolean notificacionSemanalMailCreador;
+    @Basic(optional = true)
+    @Column(name = "notificacionSemanalSmsCreador")
+    private Boolean notificacionSemanalSmsCreador;
+    @Basic(optional = true)
+    @Column(name = "notificacionInmediataMailCocreador")
+    private Boolean notificacionInmediataMailCocreador;
+    @Basic(optional = true)
+    @Column(name = "notificacionInmediataSmsCocreador")
+    private Boolean notificacionInmediataSmsCocreador;
+    @Basic(optional = true)
+    @Column(name = "notificacionDiariaMailCocreador")
+    private Boolean notificacionDiariaMailCocreador;
+    @Basic(optional = true)
+    @Column(name = "notificacionDiariaSmsCocreador")
+    private Boolean notificacionDiariaSmsCocreador;
+    @Basic(optional = true)
+    @Column(name = "notificacionSemanalMailCocreador")
+    private Boolean notificacionSemanalMailCocreador;
+    @Basic(optional = true)
+    @Column(name = "notificacionSemanalSmsCocreador")
+    private Boolean notificacionSemanalSmsCocreador;
+    @Basic(optional = true)
+    @Column(name = "idDecorador")
+    private Integer idDecorador;
+    @Basic(optional = true)
+    @Column(name = "celebracion")
+    private String celebracion;
+    @Basic(optional = true)
+    @Column(name = "lugar")
+    private String lugar;
+    @Basic(optional = true)
+    @Column(name = "telefonoCreador")
+    private String telefonoCreador;
+    @Basic(optional = true)
+    @Column(name = "direccionCreador")
+    private String direccionCreador;
+    @Basic(optional = true)
+    @Column(name = "ciudadCreador")
+    private String ciudadCreador;
+    @Basic(optional = true)
+    @Column(name = "telefonoCocreador")
+    private String telefonoCocreador;
+    @Basic(optional = true)
+    @Column(name = "direccionCocreador")
+    private String direccionCocreador;
+    @Basic(optional = true)
+    @Column(name = "ciudadCocreador")
+    private String ciudadCocreador;
+    @Basic(optional = true)
+    @Column(name = "tiendaContacto")
+    private String tiendaContacto;
+    @Basic(optional = true)
+    @Column(name = "usarDatosCreador")
+    private Boolean usarDatosCreador;
+    @Basic(optional = true)
+    @Column(name = "usarDatosCocreador")
+    private Boolean usarDatosCocreador;
+    @Basic(optional = true)
+    @Column(name = "aceptaTerminos")
+    private Boolean aceptaTerminos;
+    @Column(name = "fechaEntrega")
+    @Temporal(TemporalType.DATE)
+    private Date fechaEntrega;
+    @JoinColumn(name = "idUsuario", referencedColumnName = "id")
+    @ManyToOne(optional = true, fetch = FetchType.EAGER)
+    private UsuarioPagina usuario;
 
     public ListaRegalos() {
     }
@@ -387,6 +479,238 @@ public class ListaRegalos implements Serializable {
         this.activa = activa;
     }
 
+    public Boolean getNotificacionInmediataMailCreador() {
+        return notificacionInmediataMailCreador;
+    }
+
+    public void setNotificacionInmediataMailCreador(Boolean notificacionInmediataMailCreador) {
+        this.notificacionInmediataMailCreador = notificacionInmediataMailCreador;
+    }
+
+    public Boolean getNotificacionInmediataSmsCreador() {
+        return notificacionInmediataSmsCreador;
+    }
+
+    public void setNotificacionInmediataSmsCreador(Boolean notificacionInmediataSmsCreador) {
+        this.notificacionInmediataSmsCreador = notificacionInmediataSmsCreador;
+    }
+
+    public Boolean getNotificacionDiariaMailCreador() {
+        return notificacionDiariaMailCreador;
+    }
+
+    public void setNotificacionDiariaMailCreador(Boolean notificacionDiariaMailCreador) {
+        this.notificacionDiariaMailCreador = notificacionDiariaMailCreador;
+    }
+
+    public Boolean getNotificacionDiariaSmsCreador() {
+        return notificacionDiariaSmsCreador;
+    }
+
+    public void setNotificacionDiariaSmsCreador(Boolean notificacionDiariaSmsCreador) {
+        this.notificacionDiariaSmsCreador = notificacionDiariaSmsCreador;
+    }
+
+    public Boolean getNotificacionSemanalMailCreador() {
+        return notificacionSemanalMailCreador;
+    }
+
+    public void setNotificacionSemanalMailCreador(Boolean notificacionSemanalMailCreador) {
+        this.notificacionSemanalMailCreador = notificacionSemanalMailCreador;
+    }
+
+    public Boolean getNotificacionSemanalSmsCreador() {
+        return notificacionSemanalSmsCreador;
+    }
+
+    public void setNotificacionSemanalSmsCreador(Boolean notificacionSemanalSmsCreador) {
+        this.notificacionSemanalSmsCreador = notificacionSemanalSmsCreador;
+    }
+
+    public Boolean getNotificacionInmediataMailCocreador() {
+        return notificacionInmediataMailCocreador;
+    }
+
+    public void setNotificacionInmediataMailCocreador(Boolean notificacionInmediataMailCocreador) {
+        this.notificacionInmediataMailCocreador = notificacionInmediataMailCocreador;
+    }
+
+    public Boolean getNotificacionInmediataSmsCocreador() {
+        return notificacionInmediataSmsCocreador;
+    }
+
+    public void setNotificacionInmediataSmsCocreador(Boolean notificacionInmediataSmsCocreador) {
+        this.notificacionInmediataSmsCocreador = notificacionInmediataSmsCocreador;
+    }
+
+    public Boolean getNotificacionDiariaMailCocreador() {
+        return notificacionDiariaMailCocreador;
+    }
+
+    public void setNotificacionDiariaMailCocreador(Boolean notificacionDiariaMailCocreador) {
+        this.notificacionDiariaMailCocreador = notificacionDiariaMailCocreador;
+    }
+
+    public Boolean getNotificacionDiariaSmsCocreador() {
+        return notificacionDiariaSmsCocreador;
+    }
+
+    public void setNotificacionDiariaSmsCocreador(Boolean notificacionDiariaSmsCocreador) {
+        this.notificacionDiariaSmsCocreador = notificacionDiariaSmsCocreador;
+    }
+
+    public Boolean getNotificacionSemanalMailCocreador() {
+        return notificacionSemanalMailCocreador;
+    }
+
+    public void setNotificacionSemanalMailCocreador(Boolean notificacionSemanalMailCocreador) {
+        this.notificacionSemanalMailCocreador = notificacionSemanalMailCocreador;
+    }
+
+    public Boolean getNotificacionSemanalSmsCocreador() {
+        return notificacionSemanalSmsCocreador;
+    }
+
+    public void setNotificacionSemanalSmsCocreador(Boolean notificacionSemanalSmsCocreador) {
+        this.notificacionSemanalSmsCocreador = notificacionSemanalSmsCocreador;
+    }
+
+    public Integer getIdDecorador() {
+        return idDecorador;
+    }
+
+    public void setIdDecorador(Integer idDecorador) {
+        this.idDecorador = idDecorador;
+    }
+
+    public String getCorreoCreador() {
+        return correoCreador;
+    }
+
+    public void setCorreoCreador(String correoCreador) {
+        this.correoCreador = correoCreador;
+    }
+
+    public String getCorreoCocreador() {
+        return correoCocreador;
+    }
+
+    public void setCorreoCocreador(String correoCocreador) {
+        this.correoCocreador = correoCocreador;
+    }
+
+    public String getCelebracion() {
+        return celebracion;
+    }
+
+    public void setCelebracion(String celebracion) {
+        this.celebracion = celebracion;
+    }
+
+    public String getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
+    }
+
+    public String getTelefonoCreador() {
+        return telefonoCreador;
+    }
+
+    public void setTelefonoCreador(String telefonoCreador) {
+        this.telefonoCreador = telefonoCreador;
+    }
+
+    public String getDireccionCreador() {
+        return direccionCreador;
+    }
+
+    public void setDireccionCreador(String direccionCreador) {
+        this.direccionCreador = direccionCreador;
+    }
+
+    public String getCiudadCreador() {
+        return ciudadCreador;
+    }
+
+    public void setCiudadCreador(String ciudadCreador) {
+        this.ciudadCreador = ciudadCreador;
+    }
+
+    public String getTelefonoCocreador() {
+        return telefonoCocreador;
+    }
+
+    public void setTelefonoCocreador(String telefonoCocreador) {
+        this.telefonoCocreador = telefonoCocreador;
+    }
+
+    public String getDireccionCocreador() {
+        return direccionCocreador;
+    }
+
+    public void setDireccionCocreador(String direccionCocreador) {
+        this.direccionCocreador = direccionCocreador;
+    }
+
+    public String getCiudadCocreador() {
+        return ciudadCocreador;
+    }
+
+    public void setCiudadCocreador(String ciudadCocreador) {
+        this.ciudadCocreador = ciudadCocreador;
+    }
+
+    public String getTiendaContacto() {
+        return tiendaContacto;
+    }
+
+    public void setTiendaContacto(String tiendaContacto) {
+        this.tiendaContacto = tiendaContacto;
+    }
+
+    public Boolean getUsarDatosCreador() {
+        return usarDatosCreador;
+    }
+
+    public void setUsarDatosCreador(Boolean usarDatosCreador) {
+        this.usarDatosCreador = usarDatosCreador;
+    }
+
+    public Boolean getUsarDatosCocreador() {
+        return usarDatosCocreador;
+    }
+
+    public void setUsarDatosCocreador(Boolean usarDatosCocreador) {
+        this.usarDatosCocreador = usarDatosCocreador;
+    }
+
+    public Boolean getAceptaTerminos() {
+        return aceptaTerminos;
+    }
+
+    public void setAceptaTerminos(Boolean aceptaTerminos) {
+        this.aceptaTerminos = aceptaTerminos;
+    }
+
+    public Date getFechaEntrega() {
+        return fechaEntrega;
+    }
+
+    public void setFechaEntrega(Date fechaEntrega) {
+        this.fechaEntrega = fechaEntrega;
+    }
+
+    public UsuarioPagina getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuarioPagina(UsuarioPagina usuario) {
+        this.usuario = usuario;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
@@ -411,7 +735,24 @@ public class ListaRegalos implements Serializable {
 
     @Override
     public String toString() {
-        return "ListaRegalos{" + "idLista=" + idLista + ", codigo=" + codigo + ", nombre=" + nombre + ", cedulaCreador=" + cedulaCreador + ", nombreCreador=" + nombreCreador + ", apellidoCreador=" + apellidoCreador + ", cedulaCocreador=" + cedulaCocreador + ", nombreCocreador=" + nombreCocreador + ", apellidoCocreador=" + apellidoCocreador + ", fechaCreacion=" + fechaCreacion + ", fechaEvento=" + fechaEvento + ", estado=" + estado + ", tipoEvento=" + tipoEvento + ", listaPrivada=" + listaPrivada + ", rutaImagenPerfil=" + rutaImagenPerfil + ", rutaImagenPortada=" + rutaImagenPortada + ", mensajeBienvenida=" + mensajeBienvenida + ", mensajeAgradecimiento=" + mensajeAgradecimiento + ", invitados=" + invitados + ", valorMinimoBono=" + valorMinimoBono + ", aceptaBonos=" + aceptaBonos + ", notificacionInmediataCreador=" + notificacionInmediataCreador + ", notificacionDiariaCreador=" + notificacionDiariaCreador + ", notificacionSemanalCreador=" + notificacionSemanalCreador + ", notificacionCambioCategoriaCreador=" + notificacionCambioCategoriaCreador + ", notificacionInmediataCocreador=" + notificacionInmediataCocreador + ", notificacionDiariaCocreador=" + notificacionDiariaCocreador + ", notificacionSemanalCocreador=" + notificacionSemanalCocreador + ", notificacionCambioCategoriaCocreador=" + notificacionCambioCategoriaCocreador + ", permitirEntregaPersonal=" + permitirEntregaPersonal + ", categoria=" + categoria + ", activa=" + activa + '}';
+        return "ListaRegalos{" + "idLista=" + idLista + ", codigo=" + codigo + ", nombre=" + nombre + ", cedulaCreador=" + cedulaCreador + ", nombreCreador=" + nombreCreador
+                + ", apellidoCreador=" + apellidoCreador + ", cedulaCocreador=" + cedulaCocreador + ", nombreCocreador=" + nombreCocreador + ", apellidoCocreador=" + apellidoCocreador
+                + ", fechaCreacion=" + fechaCreacion + ", fechaEvento=" + fechaEvento + ", estado=" + estado + ", tipoEvento=" + tipoEvento + ", listaPrivada=" + listaPrivada
+                + ", rutaImagenPerfil=" + rutaImagenPerfil + ", rutaImagenPortada=" + rutaImagenPortada + ", mensajeBienvenida=" + mensajeBienvenida + ", mensajeAgradecimiento=" + mensajeAgradecimiento
+                + ", invitados=" + invitados + ", valorMinimoBono=" + valorMinimoBono + ", aceptaBonos=" + aceptaBonos + ", notificacionInmediataCreador=" + notificacionInmediataCreador
+                + ", notificacionDiariaCreador=" + notificacionDiariaCreador + ", notificacionSemanalCreador=" + notificacionSemanalCreador
+                + ", notificacionCambioCategoriaCreador=" + notificacionCambioCategoriaCreador + ", notificacionInmediataCocreador=" + notificacionInmediataCocreador
+                + ", notificacionDiariaCocreador=" + notificacionDiariaCocreador + ", notificacionSemanalCocreador=" + notificacionSemanalCocreador
+                + ", notificacionCambioCategoriaCocreador=" + notificacionCambioCategoriaCocreador + ", permitirEntregaPersonal=" + permitirEntregaPersonal + ", categoria=" + categoria
+                + ", activa=" + activa + ", correoCocreador=" + correoCocreador + ", correoCreador=" + correoCreador + ", notificacionInmediataMailCreador=" + notificacionInmediataMailCreador
+                + ", notificacionInmediataSmsCreador=" + notificacionInmediataSmsCreador + ", notificacionDiariaMailCreador=" + notificacionDiariaMailCreador
+                + ", notificacionDiariaSmsCreador=" + notificacionDiariaSmsCreador + ", notificacionSemanalMailCreador=" + notificacionSemanalMailCreador
+                + ", notificacionSemanalSmsCreador=" + notificacionSemanalSmsCreador + ", notificacionInmediataMailCocreador=" + notificacionInmediataMailCocreador
+                + ", notificacionInmediataSmsCocreador=" + notificacionInmediataSmsCocreador + ", notificacionDiariaMailCocreador=" + notificacionDiariaMailCocreador
+                + ", notificacionDiariaSmsCocreador=" + notificacionDiariaSmsCocreador + ", notificacionSemanalMailCocreador=" + notificacionSemanalMailCocreador
+                + ", notificacionSemanalSmsCocreador=" + notificacionSemanalSmsCocreador + ", idDecorador=" + idDecorador + ", celebracion=" + celebracion + ", lugar=" + lugar
+                + ", telefonoCreador=" + telefonoCreador + ", direccionCreador=" + direccionCreador + ", ciudadCreador=" + ciudadCreador + ", telefonoCocreador=" + telefonoCocreador
+                + ", direccionCocreador=" + direccionCocreador + ", ciudadCocreador=" + ciudadCocreador + ", tiendaContacto=" + tiendaContacto + ", usarDatosCreador=" + usarDatosCreador
+                + ", usarDatosCocreador=" + usarDatosCocreador + ", aceptaTerminos=" + aceptaTerminos + ", fechaEntrega=" + fechaEntrega + ", usuario=" + usuario + '}';
     }
-
 }

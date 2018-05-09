@@ -76,23 +76,25 @@ public class ValorActivoFiltroFacade extends AbstractFacade<ValorActivoFiltro> {
                 sb.append(dato[4]);
                 sb.append("'),");
             }
-//            if (filas % 100 == 0) {
-//                sb.deleteCharAt(sb.length() - 1);
-//                try {
-//                    em.createNativeQuery(sb.toString()).executeUpdate();
-//                } catch (Exception e) {
-//                    log.log(Level.SEVERE, "Ocurrio un error al insertar los filtros. ", e);
-//                }
-//                sb = new StringBuilder();
-//                sb.append("INSERT INTO VALOR_ACTIVO_FILTRO(tipo, valor, infoAdicional, tipoPadre, codigoPadre) VALUES ");
-//            }
+            if (filas % 100 == 0) {
+                sb.deleteCharAt(sb.length() - 1);
+                try {
+                    em.createNativeQuery(sb.toString()).executeUpdate();
+                } catch (Exception e) {
+                    log.log(Level.SEVERE, "Ocurrio un error al insertar los filtros. ", e);
+                }
+                sb = new StringBuilder();
+                sb.append("INSERT INTO VALOR_ACTIVO_FILTRO(tipo, valor, infoAdicional, tipoPadre, codigoPadre) VALUES ");
+            }
         }
         sb.deleteCharAt(sb.length() - 1);
 
         log.log(Level.INFO, "Query {0}", sb.toString());
 
         try {
-            em.createNativeQuery(sb.toString()).executeUpdate();
+            if (sb.toString().length() > 95) {
+                em.createNativeQuery(sb.toString()).executeUpdate();
+            }
         } catch (Exception e) {
             log.log(Level.SEVERE, "Ocurrio un error al insertar los filtros. ", e);
         }

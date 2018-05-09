@@ -27,7 +27,7 @@ public class TipoEvento implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idTipoEvento")
-    private Long idTipoEvento;
+    public Long idTipoEvento;
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;

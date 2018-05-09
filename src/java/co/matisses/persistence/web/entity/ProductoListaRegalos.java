@@ -194,5 +194,4 @@ public class ProductoListaRegalos implements Serializable {
     public String toString() {
         return "ProductoListaRegalos{" + "idProductoLista=" + idProductoLista + ", lista=" + lista + ", referencia=" + referencia + ", descripcionProducto=" + descripcionProducto + ", precio=" + precio + ", impuesto=" + impuesto + ", cantidadElegida=" + cantidadElegida + ", cantidadComprada=" + cantidadComprada + ", cantidadEntregada=" + cantidadEntregada + ", mensajeAgradecimiento=" + mensajeAgradecimiento + ", favorito=" + favorito + ", activo=" + activo + '}';
     }
-
 }

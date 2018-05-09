@@ -59,6 +59,8 @@ public class CompraListaRegalos implements Serializable {
     @Basic(optional = false)
     @Column(name = "total")
     private Long total;
+    @Column(name = "devuelto")
+    private Boolean devuelto;
 
     public CompraListaRegalos() {
     }
@@ -133,6 +135,14 @@ public class CompraListaRegalos implements Serializable {
 
     public void setTotal(Long total) {
         this.total = total;
+    }
+    
+    public Boolean getDevuelto() {
+        return devuelto;
+    }
+
+    public void setDevuelto(Boolean devuelto) {
+        this.devuelto = devuelto;
     }
 
     @Override
