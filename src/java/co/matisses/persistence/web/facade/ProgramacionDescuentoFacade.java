@@ -22,7 +22,7 @@ import javax.persistence.criteria.Root;
 @Stateless
 public class ProgramacionDescuentoFacade extends AbstractFacade<ProgramacionDescuento> {
 
-    private static final Logger console = Logger.getLogger(ProgramacionDescuentoFacade.class.getName());
+    private static final Logger CONSOLE = Logger.getLogger(ProgramacionDescuentoFacade.class.getName());
 
     @PersistenceContext(unitName = "BaruWebPersistencePU")
     private EntityManager em;
@@ -42,14 +42,14 @@ public class ProgramacionDescuentoFacade extends AbstractFacade<ProgramacionDesc
         CriteriaQuery<ProgramacionDescuento> cq = cb.createQuery(ProgramacionDescuento.class);
         Root<ProgramacionDescuento> root = cq.from(ProgramacionDescuento.class);
         cq.where(cb.and(
-                cb.greaterThanOrEqualTo(root.get(ProgramacionDescuento_.fechaInicio), fechaActual),
-                cb.lessThanOrEqualTo(root.get(ProgramacionDescuento_.fechaFin), fechaActual),
+                cb.greaterThanOrEqualTo(root.<Date>get(ProgramacionDescuento_.fechaInicio), fechaActual),
+                cb.lessThanOrEqualTo(root.<Date>get(ProgramacionDescuento_.fechaFin), fechaActual),
                 cb.equal(root.get(ProgramacionDescuento_.canal), canal)));
         try {
             return em.createQuery(cq).getResultList();
         } catch (NoResultException e) {
         } catch (Exception e) {
-            console.log(Level.SEVERE, "Ocurrio un error al consultar las promociones vigentes. ", e);
+            CONSOLE.log(Level.SEVERE, "Ocurrio un error al consultar las promociones vigentes. ", e);
         }
         return new ArrayList<>();
     }
@@ -60,16 +60,16 @@ public class ProgramacionDescuentoFacade extends AbstractFacade<ProgramacionDesc
         CriteriaQuery<ProgramacionDescuento> cq = cb.createQuery(ProgramacionDescuento.class);
         Root<ProgramacionDescuento> root = cq.from(ProgramacionDescuento.class);
         cq.where(cb.and(
-                cb.lessThanOrEqualTo(root.get(ProgramacionDescuento_.fechaInicio), fechaActual),
-                cb.greaterThanOrEqualTo(root.get(ProgramacionDescuento_.fechaFin), fechaActual),
+                cb.lessThanOrEqualTo(root.<Date>get(ProgramacionDescuento_.fechaInicio), fechaActual),
+                cb.greaterThanOrEqualTo(root.<Date>get(ProgramacionDescuento_.fechaFin), fechaActual),
                 cb.equal(root.get(ProgramacionDescuento_.canal), canal),
                 cb.equal(root.get(ProgramacionDescuento_.referencia), referencia)));
         try {
             return em.createQuery(cq).setMaxResults(1).getSingleResult();
         } catch (NoResultException e) {
         } catch (Exception e) {
-            console.log(Level.SEVERE, "Ocurrio un error al consultar las promociones vigentes para la referencia {0}, canal {1}", new Object[]{referencia, canal});
-            console.log(Level.SEVERE, "", e);
+            CONSOLE.log(Level.SEVERE, "Ocurrio un error al consultar las promociones vigentes para la referencia {0}, canal {1}", new Object[]{referencia, canal});
+            CONSOLE.log(Level.SEVERE, "", e);
         }
         return null;
     }
@@ -80,14 +80,14 @@ public class ProgramacionDescuentoFacade extends AbstractFacade<ProgramacionDesc
         CriteriaQuery<ProgramacionDescuento> cq = cb.createQuery(ProgramacionDescuento.class);
         Root<ProgramacionDescuento> programacion = cq.from(ProgramacionDescuento.class);
 
-        cq.where(cb.and(cb.lessThanOrEqualTo(programacion.get(ProgramacionDescuento_.fechaInicio), fechaActual),
-                cb.greaterThanOrEqualTo(programacion.get(ProgramacionDescuento_.fechaFin), fechaActual),
+        cq.where(cb.and(cb.lessThanOrEqualTo(programacion.<Date>get(ProgramacionDescuento_.fechaInicio), fechaActual),
+                cb.greaterThanOrEqualTo(programacion.<Date>get(ProgramacionDescuento_.fechaFin), fechaActual),
                 cb.equal(programacion.get(ProgramacionDescuento_.referencia), referencia)));
 
         try {
             return em.createQuery(cq).getResultList();
         } catch (Exception e) {
-            console.log(Level.SEVERE, "", e.getMessage());
+            CONSOLE.log(Level.SEVERE, "", e.getMessage());
             return null;
         }
     }
@@ -98,15 +98,15 @@ public class ProgramacionDescuentoFacade extends AbstractFacade<ProgramacionDesc
         CriteriaQuery<ProgramacionDescuento> cq = cb.createQuery(ProgramacionDescuento.class);
         Root<ProgramacionDescuento> programacion = cq.from(ProgramacionDescuento.class);
 
-        cq.where(cb.and(cb.lessThanOrEqualTo(programacion.get(ProgramacionDescuento_.fechaInicio), fechaActual),
-                cb.greaterThanOrEqualTo(programacion.get(ProgramacionDescuento_.fechaFin), fechaActual),
+        cq.where(cb.and(cb.lessThanOrEqualTo(programacion.<Date>get(ProgramacionDescuento_.fechaInicio), fechaActual),
+                cb.greaterThanOrEqualTo(programacion.<Date>get(ProgramacionDescuento_.fechaFin), fechaActual),
                 cb.equal(programacion.get(ProgramacionDescuento_.referencia), referencia),
                 cb.equal(programacion.get(ProgramacionDescuento_.canal), "WE")));
 
         try {
             return em.createQuery(cq).getResultList();
         } catch (Exception e) {
-            console.log(Level.SEVERE, "", e.getMessage());
+            CONSOLE.log(Level.SEVERE, "", e.getMessage());
             return null;
         }
     }
@@ -116,16 +116,16 @@ public class ProgramacionDescuentoFacade extends AbstractFacade<ProgramacionDesc
         CriteriaQuery<ProgramacionDescuento> cq = cb.createQuery(ProgramacionDescuento.class);
         Root<ProgramacionDescuento> root = cq.from(ProgramacionDescuento.class);
         cq.where(cb.and(
-                cb.lessThanOrEqualTo(root.get(ProgramacionDescuento_.fechaInicio), fechaInicio),
-                cb.greaterThanOrEqualTo(root.get(ProgramacionDescuento_.fechaFin), fechaFin),
+                cb.lessThanOrEqualTo(root.<Date>get(ProgramacionDescuento_.fechaInicio), fechaInicio),
+                cb.greaterThanOrEqualTo(root.<Date>get(ProgramacionDescuento_.fechaFin), fechaFin),
                 cb.equal(root.get(ProgramacionDescuento_.canal), canal),
                 cb.equal(root.get(ProgramacionDescuento_.referencia), referencia)));
         try {
             return em.createQuery(cq).setMaxResults(1).getSingleResult();
         } catch (NoResultException e) {
         } catch (Exception e) {
-            console.log(Level.SEVERE, "Ocurrio un error al consultar las promociones vigentes para la referencia {0}, canal {1}", new Object[]{referencia, canal});
-            console.log(Level.SEVERE, "", e);
+            CONSOLE.log(Level.SEVERE, "Ocurrio un error al consultar las promociones vigentes para la referencia {0}, canal {1}", new Object[]{referencia, canal});
+            CONSOLE.log(Level.SEVERE, "", e);
         }
         return null;
     }

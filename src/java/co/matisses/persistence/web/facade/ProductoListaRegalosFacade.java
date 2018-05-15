@@ -1,6 +1,5 @@
 package co.matisses.persistence.web.facade;
 
-import co.matisses.persistence.web.entity.BancoFacturacion_;
 import co.matisses.persistence.web.entity.ListaRegalos;
 import co.matisses.persistence.web.entity.ProductoListaRegalos;
 import co.matisses.persistence.web.entity.ProductoListaRegalos_;
@@ -121,7 +120,7 @@ public class ProductoListaRegalosFacade extends AbstractFacade<ProductoListaRega
                 cb.equal(root.get(ProductoListaRegalos_.lista), new ListaRegalos(idLista)),
                 cb.equal(root.get(ProductoListaRegalos_.activo), true),
                 cb.notEqual(root.get(ProductoListaRegalos_.referencia), "00000000000000000000"),
-                cb.lessThan(root.get(ProductoListaRegalos_.cantidadComprada), root.get(ProductoListaRegalos_.cantidadElegida))
+                cb.lessThan(root.<Integer>get(ProductoListaRegalos_.cantidadComprada), root.<Integer>get(ProductoListaRegalos_.cantidadElegida))
         ));
         try {
             Query query = em.createQuery(cq);
@@ -175,24 +174,22 @@ public class ProductoListaRegalosFacade extends AbstractFacade<ProductoListaRega
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<ProductoListaRegalos> cq = cb.createQuery(ProductoListaRegalos.class);
         Root<ProductoListaRegalos> root = cq.from(ProductoListaRegalos.class);
-        if(keywords==null || keywords.isEmpty()){
+        if (keywords == null || keywords.isEmpty()) {
             cq.where(cb.and(
-                cb.equal(root.get(ProductoListaRegalos_.lista), new ListaRegalos(idLista)),
-                cb.equal(root.get(ProductoListaRegalos_.activo), true),
-                cb.notEqual(root.get(ProductoListaRegalos_.referencia), "00000000000000000000"),
-                cb.lessThan(root.get(ProductoListaRegalos_.cantidadComprada), root.get(ProductoListaRegalos_.cantidadElegida))
-        ));
+                    cb.equal(root.get(ProductoListaRegalos_.lista), new ListaRegalos(idLista)),
+                    cb.equal(root.get(ProductoListaRegalos_.activo), true),
+                    cb.notEqual(root.get(ProductoListaRegalos_.referencia), "00000000000000000000"),
+                    cb.lessThan(root.<Integer>get(ProductoListaRegalos_.cantidadComprada), root.<Integer>get(ProductoListaRegalos_.cantidadElegida))
+            ));
+        } else {
+            cq.where(cb.and(
+                    cb.equal(root.get(ProductoListaRegalos_.lista), new ListaRegalos(idLista)),
+                    cb.like(root.<String>get(ProductoListaRegalos_.descripcionProducto), "%" + keywords + "%"),
+                    cb.equal(root.get(ProductoListaRegalos_.activo), true),
+                    cb.notEqual(root.get(ProductoListaRegalos_.referencia), "00000000000000000000"),
+                    cb.lessThan(root.<Integer>get(ProductoListaRegalos_.cantidadComprada), root.<Integer>get(ProductoListaRegalos_.cantidadElegida))
+            ));
         }
-        else{
-           cq.where(cb.and(
-                cb.equal(root.get(ProductoListaRegalos_.lista), new ListaRegalos(idLista)),
-                   cb.like(root.<String>get(ProductoListaRegalos_.descripcionProducto), "%" + keywords+ "%"),
-                cb.equal(root.get(ProductoListaRegalos_.activo), true),
-                cb.notEqual(root.get(ProductoListaRegalos_.referencia), "00000000000000000000"),
-                cb.lessThan(root.get(ProductoListaRegalos_.cantidadComprada), root.get(ProductoListaRegalos_.cantidadElegida))
-        ));
-        }
-        
 
         List<Order> orderByCriteria = new ArrayList<>();
 
@@ -276,7 +273,7 @@ public class ProductoListaRegalosFacade extends AbstractFacade<ProductoListaRega
         cq.where(cb.and(
                 cb.equal(root.get(ProductoListaRegalos_.lista), new ListaRegalos(idLista)),
                 cb.equal(root.get(ProductoListaRegalos_.activo), true),
-                cb.greaterThan(root.get(ProductoListaRegalos_.cantidadComprada), 0),
+                cb.greaterThan(root.<Integer>get(ProductoListaRegalos_.cantidadComprada), 0),
                 cb.notEqual(root.get(ProductoListaRegalos_.referencia), "00000000000000000000")
         ));
 

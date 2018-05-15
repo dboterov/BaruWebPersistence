@@ -68,8 +68,8 @@ public class SolicitudTrasladoFacade extends AbstractFacade<SolicitudTraslado> {
                 conjunction.getExpressions().add(cb.equal(solicitud.get(SolicitudTraslado_.sucursal), sucursal));
             }
             if (fechaInicial != null && fechaFinal != null) {
-                conjunction.getExpressions().add(cb.greaterThanOrEqualTo(solicitud.get(SolicitudTraslado_.fechaFinal), fechaInicial));
-                conjunction.getExpressions().add(cb.lessThanOrEqualTo(solicitud.get(SolicitudTraslado_.fechaFinal), fechaFinal));
+                conjunction.getExpressions().add(cb.greaterThanOrEqualTo(solicitud.<Date>get(SolicitudTraslado_.fechaFinal), fechaInicial));
+                conjunction.getExpressions().add(cb.lessThanOrEqualTo(solicitud.<Date>get(SolicitudTraslado_.fechaFinal), fechaFinal));
             }
 
             cq.where(conjunction);
@@ -102,8 +102,8 @@ public class SolicitudTrasladoFacade extends AbstractFacade<SolicitudTraslado> {
                 conjunction.getExpressions().add(cb.equal(solicitud.get(SolicitudTraslado_.sucursal), sucursal));
             }
             if (fechaInicial != null && fechaFinal != null) {
-                conjunction.getExpressions().add(cb.greaterThanOrEqualTo(solicitud.get(SolicitudTraslado_.fechaFinal), fechaInicial));
-                conjunction.getExpressions().add(cb.lessThanOrEqualTo(solicitud.get(SolicitudTraslado_.fechaFinal), fechaFinal));
+                conjunction.getExpressions().add(cb.greaterThanOrEqualTo(solicitud.<Date>get(SolicitudTraslado_.fechaFinal), fechaInicial));
+                conjunction.getExpressions().add(cb.lessThanOrEqualTo(solicitud.<Date>get(SolicitudTraslado_.fechaFinal), fechaFinal));
             }
 
             cq.where(conjunction);
@@ -136,8 +136,8 @@ public class SolicitudTrasladoFacade extends AbstractFacade<SolicitudTraslado> {
                 conjunction.getExpressions().add(cb.equal(solicitud.get(SolicitudTraslado_.sucursal), sucursal));
             }
             if (fechaInicial != null && fechaFinal != null) {
-                conjunction.getExpressions().add(cb.greaterThanOrEqualTo(solicitud.get(SolicitudTraslado_.fechaFinal), fechaInicial));
-                conjunction.getExpressions().add(cb.lessThanOrEqualTo(solicitud.get(SolicitudTraslado_.fechaFinal), fechaFinal));
+                conjunction.getExpressions().add(cb.greaterThanOrEqualTo(solicitud.<Date>get(SolicitudTraslado_.fechaFinal), fechaInicial));
+                conjunction.getExpressions().add(cb.lessThanOrEqualTo(solicitud.<Date>get(SolicitudTraslado_.fechaFinal), fechaFinal));
             }
 
             cq.where(conjunction);
